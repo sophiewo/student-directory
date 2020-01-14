@@ -21,7 +21,6 @@
 
 
 def input_students
-
   puts "Please enter the student names?"
   puts "To finish, just hit return twice"
 
@@ -35,31 +34,13 @@ def input_students
   students
 end
 
-# def input_students_character
-#
-#   puts "Please enter the student names?"
-#   puts "To finish, just hit return twice"
-#
-#   students = []
-#   name = gets.chomp
-#   while !name.empty? do
-#     if name[0] = "S"
-#     students << {name: name, cohort: :november}
-#     puts "Now we have #{students.count} students"
-#   end
-#     name = gets.chomp
-#   end
-#   students
-# end
-
-
-def print_header
-  puts "The students of Villains Academy"
+def print_header(letter)
+  puts "The students of Villains Academy whose names start with: #{letter}"
   puts "-------------"
 end
 
-def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+def print_footer(students, letter)
+  puts "Overall, we have #{students.count} great students and #{students.count} whose name starts with :#{letter}"
 end
 
 # def print(students)
@@ -67,20 +48,15 @@ end
 #      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
 #    end
 #  end
+def letter_filter
+  puts "Chose a letter to sort by"
+  letter = gets.chomp
+end
 
-
-# def print_specific_letter(students)
-#   character = "S"
-#   students.each_with_index do |student , index|
-#     if student.select {|letter| letter.start_with?('S') }
-#     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-#   end
-#   end
-# end
-
-def print_specific_letter(students)
+def print_specific_letter(students, letter)
+  # students_specific = []
   students.map do |name| name.values[0]
-      if name.values[0].start_with?("S")
+  if  name.values[0].start_with?(letter)
         puts "#{name[:name]} (#{name[:cohort]} cohort)"
       end
     end
@@ -89,11 +65,13 @@ end
 
 
 students = input_students
-print_header
+letter = letter_filter
+# students_specific = print_specific_letter
+print_header(letter)
 # print_specific_letter(students)
-print_specific_letter(students)
+print_specific_letter(students, letter )
 
-print_footer(students)
+print_footer(students, letter)
 
 #print all of the student names
 
