@@ -21,7 +21,6 @@
 
 
 def input_students
-
   puts "Please enter the student names?"
   puts "To finish, just hit return twice"
 
@@ -35,28 +34,38 @@ def input_students
   students
 end
 
-
 def print_header
-  puts "The students of Villains Academy"
+  puts "The students of Villains Academy whose names are shorter than 12 characters are: "
   puts "-------------"
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students but the ones with long names have been excluded"
 end
 
-def print(students)
-   students.each_with_index do |student , index|
-     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-   end
- end
+# def print(students)
+#    students.each_with_index do |student , index|
+#      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+#    end
+#  end
+# def letter_filter
+#   puts "Chose a letter to sort by"
+#   letter = gets.chomp
+# end
+
+# if name value is < 12 output
+def sort_print_specific_length(students)
+  students.map do |name|
+    name.values[0].length
+    if name.values[0].length < 12
+        puts "#{name[:name]} (#{name[:cohort]} cohort)"
+    end
+  end
+end
 
 
- students = input_students
- print_header
- print(students)
- print_footer(students)
+students = input_students
 
-#print all of the student names
-
-# then we print the number of students
+print_header
+sort_print_specific_length(students)
+print_footer(students)

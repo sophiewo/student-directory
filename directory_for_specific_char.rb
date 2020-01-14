@@ -1,24 +1,4 @@
-# students = [
-#   {name: "Dr. Hannibal Lecter", cohort: :november},
-#   {name: "Darth Vader", cohort: :november},
-#   {name: "Nurse Ratched", cohort: :november},
-#   {name: "Michael Corleone", cohort: :november},
-#   {name: "Alex DeLarge", cohort: :november},
-#   {name: "The Wicked Witch of the West", cohort: :november},
-#   {name: "Terminator", cohort: :november},
-#   {name: "Freddy Krueger", cohort: :november},
-#   {name: "The Joker", cohort: :november},
-#   {name: "Joffrey Baratheon", cohort: :november},
-#   {name: "Norman Bates", cohort: :november}
-# ]
-
-# This works for the array of hashes above
-# students.map do |name| name.values[0]
-#     if name.values[0].start_with?("S")
-#       puts name
-#     end
-#   end
-
+#This isn't working properly....
 
 def input_students
   puts "Please enter the student names?"
@@ -34,45 +14,45 @@ def input_students
   students
 end
 
-def print_header(letter)
-  puts "The students of Villains Academy whose names start with: #{letter}"
-  puts "-------------"
-end
-
-def print_footer(students, letter)
-  puts "Overall, we have #{students.count} great students and #{students.count} whose name starts with :#{letter}"
-end
-
-# def print(students)
-#    students.each_with_index do |student , index|
-#      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-#    end
-#  end
 def letter_filter
   puts "Chose a letter to sort by"
   letter = gets.chomp
 end
 
-def print_specific_letter(students, letter)
-  # students_specific = []
-  students.map do |name| name.values[0]
-  if  name.values[0].start_with?(letter)
-        puts "#{name[:name]} (#{name[:cohort]} cohort)"
-      end
-    end
+def print_header(letter)
+  puts "The students of Villains Academy whose names start with: #{letter}"
+  puts "-------------"
 end
 
+
+def filter_specific_students(students, letter)
+  students_specific = []
+  students.map do |name2| name2.values[0]
+    if name2.values[0].start_with?(letter)
+    puts  students_specific <<  {name: name2, cohort: :november}
+    end
+  
+  end
+end
+
+def print_spec(students_specific)
+   students_specific.each_with_index do |student , index|
+     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+   end
+ end
+
+ def print_footer_specific(students, students_specific, letter)
+   puts "Overall, we have #{students.count} great students and #{students_specific.count} whose name starts with :#{letter}"
+ end
 
 
 students = input_students
 letter = letter_filter
-# students_specific = print_specific_letter
+students_specific = filter_specific_students(students, letter)
+
+
+filter_specific_students(students, letter)
+
 print_header(letter)
-# print_specific_letter(students)
-print_specific_letter(students, letter )
-
-print_footer(students, letter)
-
-#print all of the student names
-
-# then we print the number of students
+print_spec(students_specific)
+print_footer_specific(students, students_specific, letter)
