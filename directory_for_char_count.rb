@@ -43,16 +43,6 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students but the ones with long names have been excluded"
 end
 
-# def print(students)
-#    students.each_with_index do |student , index|
-#      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-#    end
-#  end
-# def letter_filter
-#   puts "Chose a letter to sort by"
-#   letter = gets.chomp
-# end
-
 # if name value is < 12 output
 def sort_print_specific_length(students)
   students.map do |name|

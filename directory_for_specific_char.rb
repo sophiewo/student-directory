@@ -27,11 +27,11 @@ end
 
 def filter_specific_students(students, letter)
   students_specific = []
-  students.map do |name2| name2.values[0]
-    if name2.values[0].start_with?(letter)
+  students.map do |name2| name2.values[:name]
+    if name2.values[:name].start_with?(letter)
     puts  students_specific <<  {name: name2, cohort: :november}
     end
-  
+
   end
 end
 
